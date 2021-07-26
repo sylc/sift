@@ -113,7 +113,7 @@ async function handleRequest(
           try {
             response = await routes[route](request, params);
             for (const [key, value] of response.headers.entries()) {
-              console.log(key, value);
+              console.log('x', key, value);
             }
           } catch (error) {
             console.error("Error serving request:", error);
