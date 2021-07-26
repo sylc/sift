@@ -200,7 +200,7 @@ export function serveStatic(
         : relativePath + "/" + params.filename;
     }
     const fileUrl = new URL(filePath, baseUrl).toString();
-
+    console.log('fileUrl', fileUrl)
     let response: Response | undefined;
     if (cache) {
       response = await globalCache.match(request);
