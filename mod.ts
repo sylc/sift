@@ -68,10 +68,10 @@ function newResponse(
     : new Headers(headers);
 
 // Before
-console.log('*** Before ***')
-for (const [key, value] of response.headers.entries()) {
-  console.log(key, value)
-}
+  console.log('*** Before ***')
+  for (const [key, value] of response.headers.entries()) {
+    console.log(key, value)
+  }
 
   // GitHub provides a CSP header which embeding
   // content. This is a bad and temperory solution
@@ -213,7 +213,7 @@ export function serveStatic(
     if (typeof response === "undefined") {
       response = await fetch(new Request(fileUrl, request));
       // Clone for us to be able to modify the response.
-      response = new Response(response.body, response);
+      response = newResponse(response, {});
 
       const contentType = getContentType(String(lookup(filePath)));
       if (contentType) {
