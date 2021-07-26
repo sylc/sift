@@ -112,7 +112,9 @@ async function handleRequest(
           };
           try {
             response = await routes[route](request, params);
-            console.log(response.headers.entries())
+            for (const [key, value] of response.headers.entries()) {
+              console.log(key, value);
+            }
           } catch (error) {
             console.error("Error serving request:", error);
             response = json({ error: error.message }, { status: 500 });
