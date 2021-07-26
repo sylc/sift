@@ -112,6 +112,7 @@ async function handleRequest(
           };
           try {
             response = await routes[route](request, params);
+            console.log(response.headers.entries())
           } catch (error) {
             console.error("Error serving request:", error);
             response = json({ error: error.message }, { status: 500 });
@@ -204,6 +205,7 @@ export function serveStatic(
     let response: Response | undefined;
     if (cache) {
       response = await globalCache.match(request);
+      console.log('find response in cache')
     }
 
     if (typeof response === "undefined") {
