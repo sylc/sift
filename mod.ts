@@ -67,11 +67,24 @@ function newResponse(
     ? headers
     : new Headers(headers);
 
+// Before
+console.log('*** Before ***')
+for (const [key, value] of response.headers.entries()) {
+  console.log(key, value)
+}
+
   // GitHub provides a CSP header which embeding
   // content. This is a bad and temperory solution
   // until deploy has a solid static assets offering.
   if (response.headers.has("x-github-request-id")) {
+    console.log("has x-github-request-id: true")
     response.headers.delete("content-security-policy");
+  }
+
+  // after
+  console.log('*** AFTER ***')
+  for (const [key, value] of response.headers.entries()) {
+    console.log(key, value)
   }
 
   for (const [key, value] of newHeaders) {
